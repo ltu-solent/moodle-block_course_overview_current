@@ -1,0 +1,112 @@
+.block_course_overview_current .coursechildren {
+    font-weight: normal;
+    font-style: italic;
+}
+
+.block_course_overview_current .categorypath{
+    text-align: right;
+}
+
+.dir-rtl .block_course_overview_current .categorypath{
+    text-align: left;
+}
+
+.block_course_overview_current .content {
+    margin: 0 20px;
+}
+.block_course_overview_current .content .notice {
+    margin: 5px 0;
+}
+
+.block_course_overview_current .coursebox_current {
+    padding: 15px;
+    width: auto;
+}
+
+.block_course_overview_current .profilepicture {
+    float: left;
+}
+.dir-rtl.block_course_overview_current .profilepicture {
+    float:right;
+}
+.block_course_overview_current .welcome_area {
+    width: 100%;
+    padding-bottom: 5px;
+}
+
+.block_course_overview_current .welcome_message {
+    float: left;
+    padding: 10px;
+    vertical-align: middle;
+    border-collapse: separate;
+    clear: none;
+}
+.dir-rtl .block_course_overview_current .welcome_message {
+    float:right;
+}
+
+.block_course_overview_current .content h2.title {
+    float: left;
+    margin: 0 0 .5em 0;
+    position: relative;
+	font-size:24px;
+}
+.dir-rtl .block_course_overview_current .content h2.title {
+    float:right;
+}
+
+.block_course_overview_current .course_titlec {
+    position: relative;
+}
+
+.block .header h2 {         
+	font-size: 18px !important; 
+    text-transform: capitalize !important;    
+}
+
+.editing .block_course_overview_current .coursebox_current .cursor {
+    cursor: move;
+    margin-bottom: 2px;
+}
+
+.editing .block_course_overview_current .move {
+    float: left;
+    padding: 2px 10px 0 0;
+}
+.dir-rtl.editing .block_course_overview_current .move {
+    float:right;
+    padding: 2px 10px;
+}
+
+.block_course_overview_current .course_list_current {
+    width: 100%;
+}
+
+.block_course_overview_current div.flush {
+    clear: both;
+}
+
+.block_course_overview_current .activity_info {
+    clear: both;
+}
+.dir-rtl .block_course_overview_current .activity_info {
+    margin-right: 25px;
+}
+
+.block_course_overview_current .activity_overview {
+    padding: 2px;
+}
+.block_course_overview_current .activity_overview img.iconlarge { vertical-align: text-bottom; margin-right: 6px; }
+.dir-rtl .block_course_overview_current .activity_overview img.iconlarge { margin-left: 6px; margin-right: 0;}
+
+.block_course_overview_current .singleselect {
+    text-align: left;
+    margin: 0;
+}
+.dir-rtl .block_course_overview_current .singleselect {
+    text-align: right;
+}
+
+.block_course_overview_current .content .course_list_current .movehere{
+    margin-bottom: 15px;
+}
