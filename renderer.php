@@ -118,16 +118,20 @@ class block_course_overview_current_renderer extends plugin_renderer_base {
                 $string = $coursefullname;
                 /*** find the date ***/
                 $pos = strpos($coursefullname, "(Start Date:");
-				if ($pos!= NULL){
+				$unit_category = array(208,234,235,237,238,239,240);
+				if ($pos!= NULL && !in_array($course->category, $unit_category)){
 					$fullname = substr($coursefullname,0,$pos);
 					/*** seperate the exisiting from the date ***/
 					$startdate = substr($coursefullname,$pos);
 					$startdate = '<br><div class="solent_startdate_my">'.$startdate.'</div>';
 					/*** put them back together ***/
 					$coursefullname = $fullname.''.$startdate;
+				}elseif(in_array($course->category, $unit_category)){
+					$coursefullname  = $course->fullname;
+					$coursefullname .= '<span class="solent_startdate">Unit runs from '.   date('d/m/Y',$course->startdate) .' - ' .  date('d/m/Y',$course->enddate) . '</span>'. $descriptor;
 				}else{
 					$coursefullname = $course->fullname;
-				}
+				}			
 				
                 $link = html_writer::link($courseurl, $coursefullname, $attributes);
                 $html .= $this->output->heading($link, 2, 'title');

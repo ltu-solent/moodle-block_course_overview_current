@@ -241,7 +241,7 @@ function enrol_get_my_courses_current($fields = NULL, $sort = 'visible DESC,sort
     }
     $basefields = array('id', 'category', 'sortorder',
                         'shortname', 'fullname', 'idnumber',
-                        'startdate', 'visible',
+                        'startdate', 'enddate', 'visible',
                         'groupmode', 'groupmodeforce', 'cacherev');
     if (empty($fields)) {
         $fields = $basefields;
