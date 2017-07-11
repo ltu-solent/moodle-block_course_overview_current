@@ -118,7 +118,11 @@ class block_course_overview_current_renderer extends plugin_renderer_base {
                 $string = $coursefullname;
                 /*** find the date ***/
                 $pos = strpos($coursefullname, "(Start Date:");
-				$unit_category = array(208,234,235,237,238,239,240);
+				//$unit_category = array(208,234,235,237,238,239,240);
+				$settings = get_config('theme_solent2017');
+				if(isset($settings->units)){
+					$unit_category = explode(",", $settings->units);
+				}
 				if ($pos!= NULL && !in_array($course->category, $unit_category)){
 					$fullname = substr($coursefullname,0,$pos);
 					/*** seperate the exisiting from the date ***/
@@ -128,7 +132,7 @@ class block_course_overview_current_renderer extends plugin_renderer_base {
 					$coursefullname = $fullname.''.$startdate;
 				}elseif(in_array($course->category, $unit_category)){
 					$coursefullname  = $course->fullname;
-					$coursefullname .= '<span class="solent_startdate">Unit runs from '.   date('d/m/Y',$course->startdate) .' - ' .  date('d/m/Y',$course->enddate) . '</span>'. $descriptor;
+					$coursefullname .= '<span class="solent_startdate">Unit runs from '.   date('d/m/Y',$course->startdate) .' - ' .  date('d/m/Y',$course->enddate) . '</span>';
 				}else{
 					$coursefullname = $course->fullname;
 				}			
