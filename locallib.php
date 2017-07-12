@@ -288,6 +288,9 @@ function enrol_get_my_courses_current($fields = NULL, $sort = 'visible DESC,sort
     //note: we can not use DISTINCT + text fields due to Oracle and MS limitations, that is why we have the subselect there
 // SSU_AMEND START - COURSE OVERVIEW CURRENT
 	$settings = get_config('theme_solent2017');
+	if($settings->schools){
+		$and = 'AND cc.parent IN ( $settings->schools )';
+	}
 	$sql = "SELECT $coursefields $ccselect
               FROM {course} c
               JOIN (SELECT DISTINCT e.courseid
@@ -298,7 +301,7 @@ function enrol_get_my_courses_current($fields = NULL, $sort = 'visible DESC,sort
            $ccjoin
 			  JOIN {course_categories} cc ON c.category = cc.id
              WHERE $wheres
-			 AND cc.parent IN ( $settings->schools )
+			 $and
           $orderby";
 // SSU_AMEND END
     $params['userid']  = $USER->id;
