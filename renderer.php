@@ -41,10 +41,10 @@ class block_course_overview_current_renderer extends plugin_renderer_base {
     public function course_overview_current($courses, $overviews) {
         $html = '';
         $config = get_config('block_course_overview_current');
-        if ($config->showcategories != BLOCKS_COURSE_OVERVIEW_CURRENT_SHOWCATEGORIES_NONE) {
+        //if ($config->showcategories != BLOCKS_COURSE_OVERVIEW_CURRENT_SHOWCATEGORIES_NONE) {
             global $CFG;
             require_once($CFG->libdir.'/coursecatlib.php');
-        }
+        //}
         $ismovingcourse = false;
         $courseordernumber = 0;
         $maxcourses = count($courses);
@@ -108,34 +108,16 @@ class block_course_overview_current_renderer extends plugin_renderer_base {
                 if (empty($course->visible)) {
                     $attributes['class'] = 'dimmed';
                 }
-                $courseurl = new moodle_url('/course/view.php', array('id' => $course->id));			
-				$coursefullname = $course->fullname;
-                /*** the third occurance ***/
-                $offset = 2;
-                /*** the string to search for ***/
-                $search = '(';
-                /*** the string to search ***/
-                $string = $coursefullname;
-                /*** find the date ***/
-                $pos = strpos($coursefullname, "(Start Date:");
-				//$unit_category = array(208,234,235,237,238,239,240);
-				$settings = get_config('theme_solent2017');
-				if(isset($settings->units)){
-					$unit_category = explode(",", $settings->units);
-				}
-				if ($pos!= NULL && !in_array($course->category, $unit_category)){
-					$fullname = substr($coursefullname,0,$pos);
-					/*** seperate the exisiting from the date ***/
-					$startdate = substr($coursefullname,$pos);
-					$startdate = '<br><div class="solent_startdate_my">'.$startdate.'</div>';
-					/*** put them back together ***/
-					$coursefullname = $fullname.''.$startdate;
-				}elseif(in_array($course->category, $unit_category)){
-					$coursefullname  = $course->fullname;
+                $courseurl = new moodle_url('/course/view.php', array('id' => $course->id));	
+				
+				$currentcategory = coursecat::get($course->category, IGNORE_MISSING);
+
+				if($currentcategory->name == 'Unit Pages'){
+					$coursefullname = $course->fullname;
 					$coursefullname .= '<span class="solent_startdate">Unit runs from '.   date('d/m/Y',$course->startdate) .' - ' .  date('d/m/Y',$course->enddate) . '</span>';
 				}else{
 					$coursefullname = $course->fullname;
-				}			
+				}					
 				
                 $link = html_writer::link($courseurl, $coursefullname, $attributes);
                 $html .= $this->output->heading($link, 2, 'title');
